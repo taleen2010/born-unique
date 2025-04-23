@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Born Unique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffe0ec, #d0f0ff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #ff80b5;
+      padding: 2rem;
+      text-align: center;
+      color: white;
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+    }
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      color: #ff3399;
+    }
+    .quote {
+      font-style: italic;
+      margin: 1rem 0;
+      color: #666;
+    }
+    .game {
+      background: #fff0f5;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+    }
+    .question button {
+      background-color: #ffb3d1;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .question button:hover {
+      background-color: #ff99c2;
+    }
+    .result {
+      margin-top: 2rem;
+      background-color: #e0f7fa;
+      padding: 1rem;
+      border-radius: 10px;
+      display: none;
+    }
+    .qr {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .qr img {
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Born Unique
+  </header>
+  <section>
+    <h2>🧠 What Kind of Fingerprint Are You?</h2>
+    <p>Answer these personality questions to discover which fingerprint pattern matches YOU — and learn a fun fact about it!</p>
+
+    <div class="game">
+      <div id="q1" class="question">
+        <h3>1️⃣ How do you usually make decisions?</h3>
+        <button onclick="nextQuestion('logical')">🧠 I analyze everything</button>
+        <button onclick="nextQuestion('spontaneous')">⚡ I go with my gut</button>
+        <button onclick="nextQuestion('emotional')">💖 I follow my heart</button>
+      </div>
+
+      <div id="q2" class="question" style="display:none">
+        <h3>2️⃣ What’s your ideal weekend?</h3>
+        <button onclick="showFingerprint('adventure')">🌍 Exploring something new</button>
+        <button onclick="showFingerprint('chill')">🛋️ Relaxing with comfort</button>
+        <button onclick="showFingerprint('creative')">🎨 Making or building something</button>
+      </div>
+
+      <div id="result" class="result">
+        <h3>🎉 Your Fingerprint Match</h3>
+        <p id="resultText"></p>
+      </div>
+    </div>
+
+    <div class="qr">
+      <h3>🔗 Want to Learn More?</h3>
+      <p>Scan below to take our quiz or explore more!</p>
+      <img src="qr_google_form.png" alt="QR code to Google Form">
+    </div>
+  </section>
+
+  <script>
+    let personalityType = "";
+
+    function nextQuestion(choice) {
+      personalityType = choice;
+      document.getElementById('q1').style.display = 'none';
+      document.getElementById('q2').style.display = 'block';
+    }
+
+    function showFingerprint(activity) {
+      const resultEl = document.getElementById('result');
+      const resultText = document.getElementById('resultText');
+      let message = "";
+
+      if (personalityType === 'logical' && activity === 'creative') {
+        message = "🔍 You match the Arch fingerprint! You're rare, practical, and inventive.\nFun Fact: Only 5% of people have arch fingerprints!";
+      } else if (personalityType === 'spontaneous' && activity === 'adventure') {
+        message = "🌀 You match the Whorl fingerprint! Bold, energetic, and original.\nFun Fact: Whorls can be used to identify dominant traits in forensic science.";
+      } else if (personalityType === 'emotional' && activity === 'chill') {
+        message = "🔄 You match the Loop fingerprint! Easygoing, empathetic, and adaptable.\nFun Fact: Loops are the most common fingerprint type — about 60-65% of people have them!";
+      } else {
+        message = "🌟 You're a fingerprint blend! Unique like a snowflake.\nFun Fact: No two fingerprints have ever been found to be exactly alike — even in identical twins!";
+      }
+
+      resultText.innerText = message;
+      resultEl.style.display = 'block';
+      document.getElementById('q2').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
